@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    hostname: db
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+  server:
+    depends_on:
+      - db 
+    build: .
+    hostname: serverchat
+    container_name: serverchat
+    ports: 
+      - "80:80"
+    volumes:
+      - "./chat:/chat"
+    
+  
